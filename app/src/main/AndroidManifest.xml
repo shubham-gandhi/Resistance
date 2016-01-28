@@ -18,7 +18,8 @@
         </activity>
         <activity
             android:name=".AddWarrior"
-            android:label="@string/title_activity_add_warrior"></activity>
+            android:label="@string/title_activity_add_warrior"
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".DisplayWarriors"
             android:label="@string/title_activity_display_warriors"
@@ -26,7 +27,9 @@
         <activity
             android:name=".Details"
             android:label="@string/title_activity_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".DisplayWarriors"></activity>
+            <!--android:theme="@style/AppTheme.NoActionBar"-->
+
     </application>
 
 </manifest>

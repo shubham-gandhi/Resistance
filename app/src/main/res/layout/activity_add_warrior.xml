@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:text="Affliation:"
         android:textAppearance="?android:textAppearanceLarge"
-        android:textColor="#4689C8"
+        android:textColor="#004D40"
         android:textStyle="bold" />
 
     <RadioGroup
@@ -59,15 +59,15 @@
         android:layout_height="wrap_content"
         android:text="Species:"
         android:textAppearance="?android:textAppearanceLarge"
-        android:textColor="#4689C8"
+        android:textColor="#004D40"
         android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/spinner_species"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_dropdown"
         android:entries="@array/species"
+        android:background="@android:drawable/btn_dropdown"
 
         android:spinnerMode="dropdown" />
 
@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:text="Gender:"
         android:textAppearance="?android:textAppearanceLarge"
-        android:textColor="#4689C8"
+        android:textColor="#004D40"
         android:textStyle="bold" />
 
     <RadioGroup
@@ -115,12 +115,12 @@
         android:layout_height="wrap_content"
         android:text="Last Known Presence:"
         android:textAppearance="?android:textAppearanceLarge"
-        android:textColor="#4689C8"
+        android:textColor="#004D40"
         android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/spinner_lastknownpresence"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:drawable/btn_dropdown"
         android:entries="@array/planets"
@@ -133,22 +133,26 @@
         android:layout_height="wrap_content"
         android:text="Last Spotted On:"
         android:textAppearance="?android:textAppearanceLarge"
-        android:textColor="#4689C8"
+        android:textColor="#004D40"
         android:textStyle="bold" />
 
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click to Pick Date"
+        android:text=" Pick a Date"
         android:id="@+id/button_date_picker"
+        android:textColor="#FFFFFF"
         />
 
     <Button
+
         android:id="@+id/add_button"
+        android:layout_marginTop="48dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save details"
+        android:textColor="#FFFFFF"
         android:onClick="added"/>
 
 </LinearLayout>

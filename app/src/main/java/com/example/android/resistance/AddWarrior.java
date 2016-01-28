@@ -1,6 +1,5 @@
 package com.example.android.resistance;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -8,8 +7,6 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,7 +22,7 @@ import java.util.Calendar;
 
 public class AddWarrior extends ActionBarActivity {
 
-    String affiliation, species = "Human", gender, lastKnownPresense = "Alderaan", date;
+    String affiliation, species, gender, lastKnownPresense, date;
     Button btn;
     int year_x;
     int month_x;
@@ -37,6 +34,9 @@ public class AddWarrior extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_warrior);
 
+        species = "Human";
+        lastKnownPresense = "Alderaan";
+
 
         final Calendar cal = Calendar.getInstance();
 
@@ -45,6 +45,57 @@ public class AddWarrior extends ActionBarActivity {
         day_x = cal.get(Calendar.DAY_OF_MONTH);
         date = day_x + "/" + month_x + "/" + year_x;
         showDialogOnButtonClicked();
+
+        final Spinner spinner = (Spinner) findViewById(R.id.spinner_species);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.species, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                species = spinner.getItemAtPosition(position).toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        final Spinner spinner2 = (Spinner) findViewById(R.id.spinner_lastknownpresence);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.planets, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        spinner2.setAdapter(adapter2);
+
+
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                lastKnownPresense = spinner2.getSelectedItem().toString();
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
     }
 
 
@@ -69,6 +120,10 @@ public class AddWarrior extends ActionBarActivity {
 //
 //        return super.onOptionsItemSelected(item);
 //    }
+
+
+
+
 
     public void showDialogOnButtonClicked() {
         btn = (Button) findViewById(R.id.button_date_picker);
@@ -100,7 +155,7 @@ public class AddWarrior extends ActionBarActivity {
             month_x = monthOfYear + 1;
             day_x = dayOfMonth;
 
-            date = day_x + "/" + month_x + "/" + month_x;
+            date = day_x + "/" + month_x + "/" + year_x;
 
 
         }
@@ -162,62 +217,17 @@ public class AddWarrior extends ActionBarActivity {
         Editable fullName = nameEntered.getText();
         String name = fullName.toString();
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner_species);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.species, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                species = parent.getItemAtPosition(position).toString();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        Spinner spinner2 = (Spinner) findViewById(R.id.spinner_lastknownpresence);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.planets, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Apply the adapter to the spinner
-        spinner2.setAdapter(adapter2);
-
-        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                lastKnownPresense = parent.getItemAtPosition(position).toString();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         //toast message for successful warrior creation
         Context context = getApplicationContext();
         CharSequence text = "successfully added new warrior";
         int duration = Toast.LENGTH_SHORT;
-
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
-        WariorDetail warrior = new WariorDetail(name, affiliation, species, gender, lastKnownPresense, date);
+
+
+
+        WarriorDetail warrior = new WarriorDetail(name, affiliation, species, gender, lastKnownPresense, date);
         DatabaseHandler dbh = new DatabaseHandler(context, null, null, 1);
         dbh.addWarior(warrior);
 

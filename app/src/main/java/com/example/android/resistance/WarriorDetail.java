@@ -5,17 +5,23 @@ import java.util.Date;
 /**
  * Created by dell on 14/01/2016.
  */
-public class WariorDetail {
+public class WarriorDetail {
 
     int _id;
     String _name;
     String _affiliation;
     String _species;
+
+    @Override
+    public String toString() {
+        return _name;
+    }
+
     String _gender;
     String _lastknownpresence;
     String _lastspottedon;
 
-    public WariorDetail(int _id, String _name, String _affiliation, String _species, String _gender, String _lastknownpresence, String _lastspottedon) {
+    public WarriorDetail(int _id, String _name, String _affiliation, String _species, String _gender, String _lastknownpresence, String _lastspottedon) {
         this._id = _id;
         this._name = _name;
         this._affiliation = _affiliation;
@@ -26,10 +32,10 @@ public class WariorDetail {
 
     }
 
-    public WariorDetail() {
+    public WarriorDetail() {
     }
 
-    public WariorDetail(String _name, String _affiliation, String _species, String _gender, String _lastknownpresence, String _lastspottedon) {
+    public WarriorDetail(String _name, String _affiliation, String _species, String _gender, String _lastknownpresence, String _lastspottedon) {
         this._name = _name;
         this._affiliation = _affiliation;
         this._species = _species;

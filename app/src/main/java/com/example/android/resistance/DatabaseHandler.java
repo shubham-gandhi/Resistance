@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.android.resistance.AddWarrior;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,21 +31,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_AFFILIATION = "affiliation";
     private static final String KEY_SPECIES = "species";
     private static final String KEY_GENDER = "gender";
-    private static final String KEY_LAST_KNOWN_PRESENCE_= "LastKnownPresence";
+    private static final String KEY_LAST_KNOWN_PRESENCE_ = "LastKnownPresence";
     private static final String KEY_LAST_SPOTTED_ON = "LastSpottedOn";
-
-
-
-
 
 
     public DatabaseHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
 
 
-
     }
-// creating table
+
+    // creating table
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_Warrior_TABLE = "CREATE TABLE " + TABLE_Warrior + "("
@@ -60,7 +54,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-//upgrading table
+    //upgrading table
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
@@ -72,7 +66,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Adding new warrior
-    public void addWarior(WariorDetail warrior) {
+    public void addWarior(WarriorDetail warrior) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -86,32 +80,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // Inserting Row
         db.insert(TABLE_Warrior, null, values);
-        Log.e("Database entry added",values.toString());
+        Log.e("Database entry added", values.toString());
         db.close(); // Closing database connection
     }
 
     //Getting single warrior
-    public WariorDetail getWarrior(int id) {
+    public WarriorDetail getWarrior(int id) {
 
-            SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 
-            Cursor cursor = db.query(TABLE_Warrior, new String[] { KEY_ID,
-                            KEY_NAME, KEY_SPECIES, KEY_AFFILIATION, KEY_GENDER,KEY_LAST_KNOWN_PRESENCE_, KEY_LAST_SPOTTED_ON }, KEY_ID + "=?",
-                    new String[] { String.valueOf(id) }, null, null, null, null);
-            if (cursor != null)
-                cursor.moveToFirst();
+        Cursor cursor = db.query(TABLE_Warrior, new String[]{KEY_ID,
+                        KEY_NAME, KEY_SPECIES, KEY_AFFILIATION, KEY_GENDER, KEY_LAST_KNOWN_PRESENCE_, KEY_LAST_SPOTTED_ON}, KEY_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
 
-              WariorDetail warrior = new WariorDetail(Integer.parseInt(cursor.getString(0)),
-                      cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
+        WarriorDetail warrior = new WarriorDetail(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
 
 
-            // return warrior
-            return warrior;
+        // return warrior
+        return warrior;
     }
 
     // Getting All warriors
-    public List<WariorDetail> getAllWarriors() {
-        List<WariorDetail> warriorList = new ArrayList<WariorDetail>();
+    public List<WarriorDetail> getAllWarriors() {
+        List<WarriorDetail> warriorList = new ArrayList<WarriorDetail>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_Warrior;
 
@@ -121,7 +115,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                WariorDetail warrior = new WariorDetail();
+                WarriorDetail warrior = new WarriorDetail();
                 warrior.set_id(Integer.parseInt(cursor.getString(0)));
                 warrior.set_name(cursor.getString(1));
                 warrior.set_affiliation(cursor.getString(2));
@@ -138,7 +132,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return warriorList;
     }
 
-   // Getting warrior Count
+    // Getting warrior Count
     public int getWarriorCount() {
         String countQuery = "SELECT  * FROM " + TABLE_Warrior;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -148,8 +142,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // return count
         return cursor.getCount();
     }
+
     // Updating single Warrior
-    public int updateWarrior(WariorDetail warrior) {
+    public int updateWarrior(WarriorDetail warrior) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -162,15 +157,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // updating row
         return db.update(TABLE_Warrior, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(warrior.get_id()) });
+                new String[]{String.valueOf(warrior.get_id())});
     }
 
     // Deleting single warrior
 
-        public void deleteWarrior (WariorDetail warrior){
-            SQLiteDatabase db = this.getWritableDatabase();
-            db.delete(TABLE_Warrior, KEY_ID + " = ?",
-                    new String[]{String.valueOf(warrior.get_id())});
-            db.close();
-        }
+    public void deleteWarrior(WarriorDetail warrior) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_Warrior, KEY_ID + " = ?",
+                new String[]{String.valueOf(warrior.get_id())});
+        db.close();
+    }
 }
