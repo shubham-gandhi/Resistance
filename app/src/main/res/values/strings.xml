@@ -35,5 +35,8 @@
     </string-array>
     <string name="title_activity_details">Details</string>
     <string name="delete">Delete</string>
+    <string name="Delete_All_Warriors">Delete All Warriors</string>
+    <string name="all_deleted">all Warriors Deleted</string>
+    <string name="are_you_sure">Are you sure?</string>
 
 </resources>

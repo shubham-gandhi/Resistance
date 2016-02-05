@@ -168,4 +168,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[]{String.valueOf(warrior.get_id())});
         db.close();
     }
+
+    public void deleteAllWarriors()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+         db.delete(TABLE_Warrior,null,null);
+//         db.execSQL("delete from "+ TABLE_Warrior);
+//         db.execSQL("TRUNCATE table" + TABLE_Warrior);
+         db.close();
+    }
 }

@@ -27,8 +27,9 @@
         <activity
             android:name=".Details"
             android:label="@string/title_activity_details"
-            android:parentActivityName=".DisplayWarriors"></activity>
-            <!--android:theme="@style/AppTheme.NoActionBar"-->
+            android:parentActivityName=".DisplayWarriors"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
 
     </application>
 

@@ -2,6 +2,8 @@
 <resources>
     <color name="primary">#009688</color>
     <color name="primary_dark">#004D40</color>
-    <color name="accent">#FFCCBC</color>
+    <color name="accent">#FF9800</color>
     <color name="list_item_text">#333</color>
+
+
 </resources>
