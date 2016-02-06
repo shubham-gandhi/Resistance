@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +24,8 @@ import java.util.Calendar;
 
 public class AddWarrior extends AppCompatActivity {
 
+    private Toolbar toolbar;
+
     String affiliation, species, gender, lastKnownPresense, date;
     Button btn;
     int year_x;
@@ -34,6 +37,12 @@ public class AddWarrior extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_warrior);
+
+        toolbar= (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         species = "Human";
         lastKnownPresense = "Alderaan";

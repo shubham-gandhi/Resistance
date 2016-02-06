@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,9 @@ import java.util.List;
 
 
 public class DisplayWarriors extends AppCompatActivity {
+
+    private Toolbar toolbar;
+
     public static final String WARRIOR_NAME = "Warrior name";
     public static final String WARRIOR_ID = "Warrior id";
     public static final String WARRIOR_AFFILIATION = "Warrior affiliation";
@@ -41,6 +45,13 @@ public class DisplayWarriors extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_warriors);
+
+        toolbar= (Toolbar) findViewById(R.id.app_bar2);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         final Intent intent = new Intent(this, Details.class);
 
         Context context = getApplicationContext();

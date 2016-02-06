@@ -15,22 +15,29 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
         </activity>
         <activity
             android:name=".AddWarrior"
             android:label="@string/title_activity_add_warrior"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".DisplayWarriors"
             android:label="@string/title_activity_display_warriors"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Details"
             android:label="@string/title_activity_details"
             android:parentActivityName=".DisplayWarriors"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Main2Activity"
+            android:theme="@style/AppTheme.NoActionBar">
 
 
+
+
+        </activity>
     </application>
 
 </manifest>
