@@ -1,7 +1,14 @@
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.android.resistance.AddWarrior"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+<ScrollView
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -19,7 +26,7 @@
         android:id="@+id/name_description_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         android:hint="Name"
         android:inputType="textCapWords"/>
 
@@ -38,6 +45,7 @@
     <RadioGroup
         android:contentDescription="Affiliation"
         android:layout_width="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <RadioButton
@@ -60,6 +68,7 @@
         android:id="@+id/species_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="Species:"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="#004D40"
@@ -69,6 +78,7 @@
         android:id="@+id/spinner_species"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:entries="@array/species"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"/>
@@ -80,6 +90,7 @@
         android:id="@+id/gender_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="Gender:"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="#004D40"
@@ -89,6 +100,7 @@
         android:contentDescription="Affiliation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
         <RadioButton
             android:id="@+id/male_radio_button"
@@ -118,6 +130,7 @@
         android:id="@+id/last_known_presence"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="Last Known Presence:"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="#004D40"
@@ -126,6 +139,8 @@
     <Spinner
         android:id="@+id/spinner_lastknownpresence"
         android:layout_width="wrap_content"
+        android:layout_marginTop="8dp"
+
         android:layout_height="wrap_content"
         android:background="@android:drawable/btn_dropdown"
         android:entries="@array/planets"
@@ -136,6 +151,7 @@
         android:id="@+id/last_spotted_on"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="Last Spotted On:"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="#004D40"
@@ -145,22 +161,25 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text=" Pick a Date"
         android:id="@+id/button_date_picker"
         android:textColor="#FFFFFF"
         />
 
-    <Button
-
-        android:id="@+id/add_button"
-        android:layout_marginTop="48dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save details"
-        android:textColor="#FFFFFF"
-        android:onClick="added"/>
-
 
 </LinearLayout>
 
 </ScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_action_name"
+        android:onClick="added"/>
+</RelativeLayout>
+
