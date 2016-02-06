@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +21,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 
-public class AddWarrior extends ActionBarActivity {
+public class AddWarrior extends AppCompatActivity {
 
     String affiliation, species, gender, lastKnownPresense, date;
     Button btn;
@@ -231,10 +232,10 @@ public class AddWarrior extends ActionBarActivity {
         DatabaseHandler dbh = new DatabaseHandler(context, null, null, 1);
         dbh.addWarior(warrior);
 
-        //Intent leading to main screen
-        Intent addedWarrior = new Intent(this, MainActivity.class);
-        startActivity(addedWarrior);
+        //Intent to restart
+        Intent intent = getIntent();
         finish();
+        startActivity(intent);
 
 
     }
