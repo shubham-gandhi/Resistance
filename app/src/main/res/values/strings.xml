@@ -6,6 +6,8 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_warrior">AddWarrior</string>
     <string name="title_activity_display_warriors">DisplayWarriors</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
 
     <string-array name="planets">
         <item>Alderaan</item>

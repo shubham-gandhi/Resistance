@@ -1,14 +1,23 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/drawer_layout">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".MainActivity"
+
     android:orientation="vertical"
     >
     <include
         android:id="@+id/app_bar3"
         layout="@layout/app_bar"></include>
+
+
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -34,3 +43,14 @@
         android:textColor="#FFFFFF"/>
     </android.support.v7.widget.LinearLayoutCompat>
 </LinearLayout>
+
+    <fragment
+        android:id="@+id/fragment_navigation_drawer"
+        android:layout_width="@dimen/nav_drawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:name="com.example.android.resistance.NavigationDrawerFragment"
+        tools:layout="@layout/fragment_navigation_drawer" />
+
+</android.support.v4.widget.DrawerLayout>
+
