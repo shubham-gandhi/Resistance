@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -52,43 +54,45 @@ public class DisplayWarriors extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final Intent intent = new Intent(this, Details.class);
+      //  final Intent intent = new Intent(this, Details.class);
 
-        Context context = getApplicationContext();
-        final DatabaseHandler databaseHandler = new DatabaseHandler(context, null, null, 1);
-        info = databaseHandler.getAllWarriors();
+//        Context context = getApplicationContext();
+//        final DatabaseHandler databaseHandler = new DatabaseHandler(context, null, null, 1);
+//        info = databaseHandler.getAllWarriors();
+        
+        setUpRecyclerView();
 
 
 //        Intent i1= new Intent(this, DisplayWarriors.class);
 //        startActivity(i1);
 
 
-        ArrayAdapter<WarriorDetail> warriorArrayAdapter =
-                new ArrayAdapter<WarriorDetail>(this, android.R.layout.simple_list_item_1, info);
-
-        ListView listView = (ListView) findViewById(android.R.id.list);
-
-
-        listView.setAdapter(warriorArrayAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
-                WarriorDetail wariorDetails = info.get(position);
-                intent.putExtra(WARRIOR_ID, wariorDetails.get_id());
-                intent.putExtra(WARRIOR_NAME, wariorDetails.get_name());
-                intent.putExtra(WARRIOR_SPECIES, wariorDetails.get_species());
-                intent.putExtra(WARRIOR_GENDER, wariorDetails.get_gender());
-                intent.putExtra(WARRIOR_LASTKNOWNPRESENCE, wariorDetails.get_lastknownpresence());
-                intent.putExtra(WARRIOR_AFFILIATION, wariorDetails.get_affiliation());
-                intent.putExtra(WARRIOR_LASTSPOTTEDON, wariorDetails.get_lastspottedon());
-
-
-                startActivity(intent);
-            }
-        });
+//        ArrayAdapter<WarriorDetail> warriorArrayAdapter =
+//                new ArrayAdapter<WarriorDetail>(this, android.R.layout.simple_list_item_1, info);
+//
+//        ListView listView = (ListView) findViewById(android.R.id.list);
+//
+//
+//        listView.setAdapter(warriorArrayAdapter);
+//
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//
+//                WarriorDetail wariorDetails = info.get(position);
+//                intent.putExtra(WARRIOR_ID, wariorDetails.get_id());
+//                intent.putExtra(WARRIOR_NAME, wariorDetails.get_name());
+//                intent.putExtra(WARRIOR_SPECIES, wariorDetails.get_species());
+//                intent.putExtra(WARRIOR_GENDER, wariorDetails.get_gender());
+//                intent.putExtra(WARRIOR_LASTKNOWNPRESENCE, wariorDetails.get_lastknownpresence());
+//                intent.putExtra(WARRIOR_AFFILIATION, wariorDetails.get_affiliation());
+//                intent.putExtra(WARRIOR_LASTSPOTTEDON, wariorDetails.get_lastspottedon());
+//
+//
+//                startActivity(intent);
+//            }
+//        });
 
 //        Iterator<WariorDetail> iterator= info.iterator();
 //
@@ -102,6 +106,23 @@ public class DisplayWarriors extends AppCompatActivity {
 //            tv.setText(sb.toString());
 //
 //        }
+    }
+
+    private void setUpRecyclerView() {
+       DatabaseHandler dbHandler= new DatabaseHandler(getApplicationContext(), null, null, 1);
+        RecyclerView recyclerView= (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerAdapter adapter= new RecyclerAdapter(this, dbHandler.getAllWarriors() );
+        recyclerView.setAdapter(adapter);
+
+        LinearLayoutManager mLinearLayoutManager= new LinearLayoutManager(this);
+        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(mLinearLayoutManager);
+
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+
+
+
     }
 
 
